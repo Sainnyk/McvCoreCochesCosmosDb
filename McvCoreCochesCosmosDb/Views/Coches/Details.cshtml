@@ -1,0 +1,66 @@
+﻿@model McvCoreCochesCosmosDb.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="color:blueviolet">Details</h1>
+
+<div>
+    <h4>Vehiculo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VelocidadMaxima)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VelocidadMaxima)
+        </dd>
+    </dl>
+    @if(Model.Motor != null)
+    {
+        <ul class="list-group">
+            <li class="list-group-item">
+                Tipo de motor: @Model.Motor.Tipo
+            </li>
+            <li class="list-group-item">
+                Caballos: @Model.Motor.Caballos
+            </li>
+            <li class="list-group-item">
+                Cilindrada: @Model.Motor.Cilindrada
+            </li>
+            <li class="list-group-item">
+                Turbo: @Model.Motor.Turbo
+            </li>
+        </ul>
+    }
+
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="ListadoVehiculos" asp-controller="Coches">Back to List</a>
+</div>

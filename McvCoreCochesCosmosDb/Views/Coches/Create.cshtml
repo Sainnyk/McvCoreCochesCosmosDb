@@ -1,0 +1,81 @@
+﻿@model McvCoreCochesCosmosDb.Models.Vehiculo
+
+@{
+    ViewData["Title"] = "Create";
+}
+@section scripts{
+    <script>
+        $(document).ready(function(){
+            $("#existemotor").click(function(){//Cuando hagamos click en el checkbox "existemotor":
+                $("#capamotor").toggle(); //Toggle despliega o repliega
+            });
+        });
+    </script>
+}
+
+
+<h1 style="color:blueviolet">Crear vehículo</h1>
+
+<h4>Vehiculo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+
+           <div class="row" style="float:left">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Marca" class="control-label"></label>
+                    <input asp-for="Marca" class="form-control" />
+                    <span asp-validation-for="Marca" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Modelo" class="control-label"></label>
+                    <input asp-for="Modelo" class="form-control" />
+                    <span asp-validation-for="Modelo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Imagen" class="control-label"></label>
+                    <input asp-for="Imagen" class="form-control" />
+                    <span asp-validation-for="Imagen" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VelocidadMaxima" class="control-label"></label>
+                    <input asp-for="VelocidadMaxima" class="form-control" />
+                    <span asp-validation-for="VelocidadMaxima" class="text-danger"></span>
+                </div>
+                <input type="checkbox" name="existemotor" id="existemotor" value="true"/>Vehiculo con Motor
+                @*Si se marca este checkbox se mostrara lo de abajo, sino no.*@
+           </div>
+
+           @*INCLUIMOS MAS CAJAS PARA PODER AGREGAR UN MOTOR OPCIONAL*@
+           @*Motor es otra propiedad de Vehiculo, pero es un objeto con sus propias propiedades*@
+           <div id="capamotor" style="float:left;" display: none">
+               <label>Tipo de motor</label>
+               <input type="text" name="Motor.Tipo" class="form-control"/>
+               <label>Caballos</label>
+               <input type="text" name="Motor.Caballos" class="form-control" />
+               <label>Cilindrada</label>
+               <input type="text" name="Motor.Cilindrada" class="form-control"/>
+               <label>Turbo</label>
+               <input type="checkbox" name="Motor.Turbo" class="form-control" value="true"/>
+
+           </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Coches" asp-action="ListadoVehiculos">Back to List</a>
+</div>
+
