@@ -1,0 +1,71 @@
+﻿@model IEnumerable<McvCoreCochesCosmosDb.Models.Vehiculo>
+
+@{
+    ViewData["Title"] = "BuscadorCoches";
+}
+
+<h1 style="color:blueviolet">Buscador de coches</h1>
+
+<form method="post">
+    <label>Introduzca marca:</label> 
+    <input type="text" name="marca" class="form-control" required />
+    <br/>
+    <button class="btn btn-dark">Buscar</button>
+</form>
+
+@if (Model != null)
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Marca)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Modelo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Imagen)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VelocidadMaxima)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Marca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modelo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Imagen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VelocidadMaxima)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

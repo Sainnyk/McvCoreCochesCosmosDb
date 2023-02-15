@@ -77,7 +77,24 @@ namespace McvCoreCochesCosmosDb.Services
             return response.Resource; //Devolvemos el recurso de la respuesta (el vehiculo)
         }
 
+        //Metodo para buscar mediante una consulta SQL en JSON Cosmos DB
+        public async Task<List<Vehiculo>> GetVehiculosMarcaAsync(string marca)
+        {
+            //Las consultas a Json no tienen parametros, deben realizarse concatenando
+            string sql = "select * from c where c.Marca ='" + marca + "'";
+            //Para filtrar se usan Query Definitions
+            QueryDefinition definition = new QueryDefinition(sql);
+            //A partir de la definicion, se recuperan los elementos con un Iterator pero enviando la definicion
+            var query = this.containerCosmos.GetItemQueryIterator<Vehiculo>(definition);
+            List<Vehiculo> coches = new List<Vehiculo>();
+            while (query.HasMoreResults)
+            {
+                var results = await query.ReadNextAsync();
+                coches.AddRange(results);
+            }
 
+            return coches;
+        }
 
 
 
